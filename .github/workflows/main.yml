@@ -1,4 +1,4 @@
-name: 'test my progect'
+name: 'Test my project'
 on:
   push:
 
