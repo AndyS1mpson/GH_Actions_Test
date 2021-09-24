@@ -1,0 +1,17 @@
+name: 'test my progect'
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu:latest
+    steps:
+      - name: 'Build.'
+        run: |
+          sh "docker-compose build"
+  test:
+    runs-on: ubuntu:latest
+    steps:
+      - name: 'Test.'
+        run: |
+          sh "docker-compose up"
