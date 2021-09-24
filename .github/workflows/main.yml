@@ -14,6 +14,9 @@ jobs:
       - name: Test.
         run: docker-compose up
         
+      - name: Exit code.
+        run: echo docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}'
+        
       - name: Check exit code.
         run: echo "ECODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}')" >> env.EXITCODE
       
