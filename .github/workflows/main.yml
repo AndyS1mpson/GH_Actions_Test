@@ -15,7 +15,7 @@ jobs:
         run: docker-compose up
         
       - name: Check exit code.
-        run: echo "EXITCODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}')" >> $EXITCODE
+        run: echo "ECODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}')" >> env.EXITCODE
       
       - if: ${{ env.EXITCODE == 0 }}
         name: Deply.
