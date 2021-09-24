@@ -12,6 +12,7 @@ jobs:
         run: docker-compose build
   run:
     runs-on: [self-hosted]
+    needs: build
     steps:
       - uses: actions/checkout@v2
       - name: 'Test.'
