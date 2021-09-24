@@ -1,18 +1,12 @@
 name: 'Test my project'
 on:
   push:
-env:
- LOGIN: ${{ secrets.DOCKER_LOGIN }}
- NAME: ${{ secrets.DOCKER_NAME }}
  
 jobs:
   build:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Log in to GitHub Packages
-        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --pa
       
       - name: 'Build images.'
         run: docker-compose build
