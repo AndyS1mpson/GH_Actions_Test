@@ -12,6 +12,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: docker-images
+          path: ./dockerimages
   test:
     needs: build
     runs-on: [ubuntu-latest]
@@ -19,6 +20,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: docker-images
+          path: ./dockerimages
       - uses: actions/checkout@v2
       - name: 'Test.'
         run: docker-compose up
