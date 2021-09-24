@@ -7,7 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+      - uses: actions/cache@v2
+        env:
+          cache-name: images
+        with:
+          path: ~/
       - name: 'Build images.'
         run: docker-compose build
   run:
@@ -15,6 +19,7 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
       - name: 'Test.'
         run: docker-compose up
 
