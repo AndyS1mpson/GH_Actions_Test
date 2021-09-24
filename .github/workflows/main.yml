@@ -10,9 +10,7 @@ jobs:
       
       - name: 'Build images.'
         run: docker-compose build
-        
-      - name: 'Push images.'
-        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
+
       - name: 'Test.'
         run: docker-compose up
 
