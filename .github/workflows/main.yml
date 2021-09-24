@@ -1,26 +1,24 @@
 name: 'Test my project'
 on:
   push:
-
+env:
+ LOGIN: ${{ secrets.DOCKER_LOGIN }}
+ NAME: ${{ secrets.DOCKER_NAME }}
+ 
 jobs:
   build:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - name: 'Build.'
+      
+      - name: Log in to GitHub Packages
+        run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --pa
+      
+      - name: 'Build images.'
         run: docker-compose build
-      - uses: actions/upload-artifact@master
-        with:
-          name: docker-images
-          path: ./dockerimages
-  test:
-    needs: build
-    runs-on: [ubuntu-latest]
-    steps:
-      - uses: actions/download-artifact@master
-        with:
-          name: docker-images
-          path: ./dockerimages
-      - uses: actions/checkout@v2
+        
+      - name: 'Push images.'
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
       - name: 'Test.'
         run: docker-compose up
+
