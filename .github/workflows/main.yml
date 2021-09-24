@@ -18,10 +18,10 @@ jobs:
         run: docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}'
         
       - name: Check exit code.
-        run: echo "ECODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}')" >> .env
+        run: echo EXITCODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}') >> .env
       
       - name: Check EXITCODE var.
-        run: echo ${{ env.ECODE }}
+        run: echo ${{ env.EXITCODE }}
       
       - if: ${{ env.EXITCODE == 0 }}
         name: Deply.
