@@ -13,15 +13,9 @@ jobs:
 
       - name: Test.
         run: docker-compose up
-        
-      - name: Exit code.
-        run: docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}'
-        
+
       - name: Check exit code.
         run: echo EXITCODE=$(docker inspect gh_actions_test_tests_1 --format='{{.State.ExitCode}}') >> $GITHUB_ENV
-      
-      - name: Check EXITCODE var.
-        run: echo ${{env.EXITCODE}}
       
       - if: ${{ env.EXITCODE == 0 }}
         name: Deply.
