@@ -5,4 +5,3 @@ services:
     build: ./ghat
     volumes:
       - './ghat:/core/'
-    

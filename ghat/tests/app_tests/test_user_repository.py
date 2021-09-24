@@ -10,7 +10,7 @@ def test_get_user_by_id(data):
     user = user_repository.get_user_by_id(1)
 
     assert user.name == 'Test1'
-    assert user.surname == 'Testov1'
+    assert user.surname == 'Testov'
 
 
 def test_create_user(data):
