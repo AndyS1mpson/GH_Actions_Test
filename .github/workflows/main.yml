@@ -10,7 +10,8 @@ jobs:
       - name: 'Build images.'
         run: docker-compose build
       - name: 'Test.'
-        run: docker-compose up
-      - if: ${{.State.ExitCode != 0}}
+        run: docker-compose up |
+          echo "EXITCODE=$(docker inspect paymentsystem_tests_1 --format='{{.State.ExitCode}}')" >> $EXITCODE
+      - if: ${{ $EXITCODE != 0 }}
         name: 'Deploy'
         run: echo 'Deploy service!'
