@@ -7,11 +7,9 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: 'Build.'
-        run: |
-          sh "docker-compose build"
+        run: docker-compose build
   test:
     runs-on: [ubuntu-latest]
     steps:
       - name: 'Test.'
-        run: |
-          sh "docker-compose up"
+        run: docker-compose up
